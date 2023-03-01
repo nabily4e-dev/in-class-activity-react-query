@@ -9,7 +9,7 @@ import {
 import { getContacts } from '../api/contacts'
 import axios from 'axios'
 
-const API_URL = 'https://localhost:4000/contacts'
+const API_URL = 'http://localhost:4000/contacts'
 
 export default function TableComponent() {
   // const { isLoading, isSuccess, error, data } = useQuery({
@@ -19,14 +19,15 @@ export default function TableComponent() {
 
   // const queryClient = useQueryClient()
 
-  const deleteContact = useMutation((id) => {
-    return axios.delete(`${API_URL}/${id}`)
-  })
-
   const { data, isError, error, isFetching, isLoading } = useQuery(
     ['contacts'],
     getContacts
   )
+
+  const deleteContact = useMutation((id) => {
+    return axios.delete(`${API_URL}/${id}`)
+  })
+
   // const { data, isError, isFetching, isLoading, isSuccess } = query
 
   // const deleteContact = async (id) => {
